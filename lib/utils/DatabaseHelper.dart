@@ -65,9 +65,9 @@ class DatabaseHelper{
 
   }
 
-  getCategories() async{
+  Future<List<Map<String,dynamic>>> getCategories() async{
       var db = await getDatabase();
-      var sonuc = await db.query("category");  //return map
-      print(sonuc);
+      var sonuc = await db.query("category");  //return List<map>
+      return sonuc;
   }
 }
