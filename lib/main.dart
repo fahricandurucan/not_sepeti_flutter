@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:not_sepeti_flutter/utils/DatabaseHelper.dart';
 
+import 'NotePage.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,30 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: NotePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-    var db = DatabaseHelper();
-    db.getCategories();
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Not Sepeti"),
-      ),
-      body: Center(
-        child: Text("Hello")
-      ),
-    );
-  }
-}

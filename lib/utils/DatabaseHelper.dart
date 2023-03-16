@@ -4,6 +4,9 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 
+import '../models/Category.dart';
+import '../models/Note.dart';
+
 class DatabaseHelper{
 
   static  DatabaseHelper? _databaseHelper;
@@ -65,9 +68,55 @@ class DatabaseHelper{
 
   }
 
+  ///// **** CATEGORY TABLE **** /////
   Future<List<Map<String,dynamic>>> getCategories() async{
       var db = await getDatabase();
       var sonuc = await db.query("category");  //return List<map>
       return sonuc;
   }
+
+  Future<int> addCategory(Category category) async{
+      var db = await getDatabase();
+      var result = await db.insert("Category",category.toMap());
+      return result;
+  }
+
+  Future<int> updateCategory(Category category) async{
+      var db = await getDatabase();
+      var result = await db.update("Category", category.toMap(),where: "id=?",whereArgs: [category.categoryID]);
+      return result;
+  }
+
+  Future<int> deleteCategory(int categoryID) async{
+      var db = await getDatabase();
+      var result = await db.delete("Category",where: "id=?",whereArgs: [categoryID]);
+      return result;
+  }
+
+
+  ///// **** NOTES TABLE **** /////
+
+  Future<List<Map<String,dynamic>>> getNotes() async{
+      var db = await getDatabase();
+      var result = await db.query("Note");
+      return result;
+  }
+
+  Future<int> addNote(Note note) async{
+      var db = await getDatabase();
+      var result = await db.insert("Note", note.toMap());
+      return result;
+  }
+
+  Future<int> updateNote(Note note) async{
+      var db = await getDatabase();
+      var result = await db.update("Note", note.toMap(),where: "id=?",whereArgs: [note.noteID]);
+      return result;
+  }
+  Future<int> deleteNote(int noteID) async{
+      var db = await getDatabase();
+      var result = await db.delete("Note",whereArgs: [noteID]);
+      return result;
+  }
+
 }
