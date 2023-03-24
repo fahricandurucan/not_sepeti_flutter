@@ -1,6 +1,6 @@
 
 class Category{
-  late int categoryID;
+  int? categoryID;
   late String categoryName;
 
   Category(this.categoryName); // kategori eklerken kullan çünkü id otomatik veriliyor
