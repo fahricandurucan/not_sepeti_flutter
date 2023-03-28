@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:not_sepeti_flutter/models/Category.dart';
 import 'package:not_sepeti_flutter/utils/DatabaseHelper.dart';
 
+import 'NoteAddingPage.dart';
+
 class NotePage extends StatefulWidget {
   const NotePage({Key? key}) : super(key: key);
 
@@ -46,6 +48,7 @@ class _NotePageState extends State<NotePage> {
               onPressed: (){
                 kategoriEkle();
               },
+            heroTag: "kategoriEkle",
             child: Icon(Icons.menu_book),
             backgroundColor: Colors.pink,
             mini: true,
@@ -53,8 +56,9 @@ class _NotePageState extends State<NotePage> {
           FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: (){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context) => NoteAddingPage()));
             },
+            heroTag: "notEkle",
             backgroundColor: Colors.pink,
           ),
         ],
